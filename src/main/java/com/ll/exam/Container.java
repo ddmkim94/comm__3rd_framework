@@ -3,24 +3,37 @@ package com.ll.exam;
 import com.ll.exam.annotation.Controller;
 import com.ll.exam.annotation.GetMapping;
 import com.ll.exam.article.controller.ArticleController;
+import com.ll.exam.home.controller.HomeController;
 import org.reflections.Reflections;
 
-import java.lang.reflect.Method;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Set;
 
 public class Container {
 
-    private static final ArticleController articleController;
+    private static ArticleController articleController;
+    private static HomeController homeController;
 
     static {
-        articleController = new ArticleController();
+        try {
+            articleController = (ArticleController) Class.forName("com.ll.exam.article.controller.ArticleController")
+                    .getConstructor().newInstance();
+            homeController = (HomeController) Class.forName("com.ll.exam.home.controller.HomeController")
+                    .getConstructor().newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // articleController = new ArticleController();
+        // homeController = new HomeController();
     }
 
     public static ArticleController getArticleController() {
         return articleController;
+    }
+
+    public static HomeController getHomeController() {
+        return homeController;
     }
 
     public static List<String> getControllerNames() {
