@@ -1,23 +1,21 @@
 package com.ll.exam;
 
 import com.ll.exam.annotation.Controller;
-import com.ll.exam.annotation.GetMapping;
 import com.ll.exam.article.controller.ArticleController;
 import com.ll.exam.home.controller.HomeController;
 import org.reflections.Reflections;
 
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Container {
 
-    private static ArticleController articleController;
-    private static HomeController homeController;
+    private static final ArticleController articleController;
+    private static final HomeController homeController;
 
     static {
-        articleController = (ArticleController) Ut.cls.newObj(ArticleController.class, null);
-        homeController = (HomeController) Ut.cls.newObj(HomeController.class, null);
+        articleController = Ut.cls.newObj(ArticleController.class, null);
+        homeController = Ut.cls.newObj(HomeController.class, null);
     }
 
     public static ArticleController getArticleController() {
