@@ -18,22 +18,22 @@ public class AppTest {
 
     @Test
     void ioc__ArticleControllerTest() throws Exception {
-        ArticleController articleController = Container.getArticleController();
+        ArticleController articleController = (ArticleController) Container.getObj(ArticleController.class);
         assertThat(articleController).isNotNull();
     }
 
     @Test
     public void ioc__ArticleController__SingletonTest() {
-        ArticleController articleController1 = Container.getArticleController();
-        ArticleController articleController2 = Container.getArticleController();
+        ArticleController articleController1 = (ArticleController) Container.getObj(ArticleController.class);
+        ArticleController articleController2 = (ArticleController) Container.getObj(ArticleController.class);
 
         assertThat(articleController2).isEqualTo(articleController1);
     }
 
     @Test
     public void ioc__HomeController__SingletonTest() {
-        HomeController homeController1 = Container.getHomeController();
-        HomeController homeController2 = Container.getHomeController();
+        HomeController homeController1 = (HomeController) Container.getObj(HomeController.class);
+        HomeController homeController2 = (HomeController) Container.getObj(HomeController.class);
 
         assertThat(homeController2).isEqualTo(homeController1);
     }
