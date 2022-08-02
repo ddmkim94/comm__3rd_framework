@@ -16,16 +16,8 @@ public class Container {
     private static HomeController homeController;
 
     static {
-        try {
-            articleController = (ArticleController) Class.forName("com.ll.exam.article.controller.ArticleController")
-                    .getConstructor().newInstance();
-            homeController = (HomeController) Class.forName("com.ll.exam.home.controller.HomeController")
-                    .getConstructor().newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        // articleController = new ArticleController();
-        // homeController = new HomeController();
+        articleController = (ArticleController) Ut.cls.newObj(ArticleController.class, null);
+        homeController = (HomeController) Ut.cls.newObj(HomeController.class, null);
     }
 
     public static ArticleController getArticleController() {
