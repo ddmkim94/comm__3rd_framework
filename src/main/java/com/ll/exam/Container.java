@@ -31,14 +31,12 @@ public class Container {
         List<String> names = new ArrayList<>();
 
         Reflections ref = new Reflections("com.ll.exam");
-        for (Class<?> cl : ref.getTypesAnnotatedWith(Controller.class)) {
-            String name = cl.getSimpleName();
+        for (Class<?> cls : ref.getTypesAnnotatedWith(Controller.class)) {
+            String name = cls.getSimpleName(); // HomeController
+            name = name.replace("Controller", ""); // Home
+            name = Ut.str.decapitalize(name); // home
 
-            char[] charArray = name.toCharArray();
-            charArray[0] = Character.toLowerCase(charArray[0]);
-            String simpleName = new String(charArray);
-
-            names.add(simpleName.replace("Controller", ""));
+            names.add(name.replace("Controller", name));
         }
 
         return names;
