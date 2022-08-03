@@ -28,7 +28,7 @@ public class Container {
     private static void scanRepositories() {
         Reflections ref = new Reflections(App.BASE_PACKAGE_PATH);
         for (Class<?> cls : ref.getTypesAnnotatedWith(Repository.class)) {
-            objects.put(cls, Ut.cls.newObj(cls, null));
+            objects.put(cls, com.ll.exam.util.Ut.cls.newObj(cls, null));
         }
     }
 
@@ -63,14 +63,14 @@ public class Container {
     private static void scanServices() {
         Reflections ref = new Reflections(App.BASE_PACKAGE_PATH);
         for (Class<?> cls : ref.getTypesAnnotatedWith(Service.class)) {
-            objects.put(cls, Ut.cls.newObj(cls, null));
+            objects.put(cls, com.ll.exam.util.Ut.cls.newObj(cls, null));
         }
     }
 
     private static void scanControllers() {
         Reflections ref = new Reflections(App.BASE_PACKAGE_PATH);
         for (Class<?> cls : ref.getTypesAnnotatedWith(Controller.class)) {
-            objects.put(cls, Ut.cls.newObj(cls, null));
+            objects.put(cls, com.ll.exam.util.Ut.cls.newObj(cls, null));
         }
     }
 
@@ -86,7 +86,7 @@ public class Container {
         for (Class<?> cls : ref.getTypesAnnotatedWith(Controller.class)) {
             String name = cls.getSimpleName(); // HomeController
             name = name.replace("Controller", ""); // Home
-            name = Ut.str.decapitalize(name); // home
+            name = com.ll.exam.util.Ut.str.decapitalize(name); // home
 
             names.add(name.replace("Controller", name));
         }
